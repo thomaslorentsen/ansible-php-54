@@ -1,47 +1,10 @@
 ---
-- name: install remi repository
-  package:
-    name: https://rpms.remirepo.net/enterprise/remi-release-6.rpm
-    state: present
-
-- name: install php 5.4 with remi
+- name: install php 54
   package:
     name: "{{ item }}"
     state: present
   with_items:
-    - php54
-    - php54-php
-    - php54-php-common
-    - php54-php-cli
-
-
-- name: install php 5.4 modules with remi
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - php54-php-mcrypt
-    - php54-php-bcmath
-    - php54-php-xml
-    - php54-php-gd
-    - php54-php-mbstring
-    - php54-php-pdo
-    - php54-php-tidy
-    - php54-php-pecl-geoip
-    - php54-php-pecl-apc
-    - php54-php-pecl-ssh2
-    - php54-php-mysqlnd
-    - php54-php-pecl-zip
-
-- name: symlink php config
-  file:
-    src: "/opt/remi/php54/root/etc/php.ini"
-    dest: /etc/php.ini
-    state: link
-
-- name: symlink php config directory
-  file:
-    src: "/opt/remi/php54/root/etc/php.d"
-    dest: /etc/php.d
-    state: link
+    - "{{ ius_prefix }}php54-common-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-cli-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
 ...

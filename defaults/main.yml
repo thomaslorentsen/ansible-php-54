@@ -1,2 +1,4 @@
 ---
-# defaults file for ansible-php-54
+ius_distribution: centos6
+ius_prefix: "https://dl.iuscommunity.org/pub/ius/archive/CentOS/6/x86_64/"
+...
