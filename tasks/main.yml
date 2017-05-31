@@ -14,17 +14,6 @@
     - php54-php-common
     - php54-php-cli
 
-- name: symlink php config
-  file:
-    src: "/opt/remi/php54/root/etc/php.ini"
-    dest: /etc/php.ini
-    state: link
-
-- name: symlink php config directory
-  file:
-    src: "/opt/remi/php54/root/etc/php.d"
-    dest: /etc/php.d
-    state: link
 
 - name: install php 5.4 modules with remi
   package:
@@ -43,4 +32,16 @@
     - php54-php-pecl-ssh2
     - php54-php-mysqlnd
     - php54-php-pecl-zip
+
+- name: symlink php config
+  file:
+    src: "/opt/remi/php54/root/etc/php.ini"
+    dest: /etc/php.ini
+    state: link
+
+- name: symlink php config directory
+  file:
+    src: "/opt/remi/php54/root/etc/php.d"
+    dest: /etc/php.d
+    state: link
 ...
