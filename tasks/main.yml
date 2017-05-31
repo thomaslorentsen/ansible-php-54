@@ -23,9 +23,9 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - "{{ ius_prefix }}php54-common-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
-    - "{{ ius_prefix }}php54-cli-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
-    - "{{ ius_prefix }}php54-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ cache_path }}php54-common-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ cache_path }}php54-cli-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ cache_path }}php54-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
 
 - name: install libmcrypt
   package:
