@@ -16,13 +16,13 @@
 
 - name: symlink php config
   file:
-    src: "{{ php.config_root }}/etc/php.ini"
+    src: "/opt/remi/php54/root/etc/php.ini"
     dest: /etc/php.ini
     state: link
 
 - name: symlink php config directory
   file:
-    src: "{{ php.config_root }}/etc/php.d"
+    src: "/opt/remi/php54/root/etc/php.d"
     dest: /etc/php.d
     state: link
 
