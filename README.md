@@ -1,4 +1,6 @@
-Role Name
+[![Build Status](https://travis-ci.org/thomaslorentsen/ansible-php-54.svg?branch=master)](https://travis-ci.org/thomaslorentsen/ansible-php-54)
+
+Ansible PHP 54
 =========
 
 A brief description of the role goes here.
