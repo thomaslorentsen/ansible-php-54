@@ -1,5 +1,5 @@
 ---
-- name: install php 54
+- name: install php 54 base
   package:
     name: "{{ item }}"
     state: present
@@ -7,4 +7,19 @@
     - "{{ ius_prefix }}php54-common-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
     - "{{ ius_prefix }}php54-cli-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
     - "{{ ius_prefix }}php54-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+
+- name: install php 54 modules
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ ius_prefix }}php54-mcrypt-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-bcmath-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-xml-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-gd-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-mbstring-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-pdo-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-tidy-5.4.45-1.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-pecl-geoip-1.0.8-3.ius.{{ ius_distribution }}.x86_64.rpm"
+    - "{{ ius_prefix }}php54-pecl-apc-3.1.13-2.ius.{{ ius_distribution }}.x86_64.rpm"
 ...
