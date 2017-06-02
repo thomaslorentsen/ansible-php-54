@@ -1,4 +1,9 @@
 ---
+- name: Install libaio
+  package:
+    name: libaio
+    state: present
+
 - name: download packages
   get_url:
     url: "{{ item }}"
