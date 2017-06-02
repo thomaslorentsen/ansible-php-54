@@ -1,0 +1,54 @@
+---
+- name: download packages
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ cache_path }}"
+  with_items:
+    - http://195.220.108.108/linux/remi/enterprise/6/remi/x86_64/php54-php-oci8-5.4.45-12.el6.remi.x86_64.rpm
+    - http://195.220.108.108/linux/remi/enterprise/6/remi/x86_64/php54-php-pdo-5.4.45-12.el6.remi.x86_64.rpm
+    - http://195.220.108.108/linux/remi/enterprise/6/remi/x86_64/php54-php-common-5.4.45-12.el6.remi.x86_64.rpm
+    - http://195.220.108.108/linux/remi/enterprise/6/remi/x86_64/php54-runtime-2.1-2.el6.remi.x86_64.rpm
+
+- name: install oci module
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ cache_path }}php54-runtime-2.1-2.el6.remi.x86_64.rpm"
+    - "{{ cache_path }}php54-php-common-5.4.45-12.el6.remi.x86_64.rpm"
+    - "{{ cache_path }}php54-php-pdo-5.4.45-12.el6.remi.x86_64.rpm"
+    - "{{ cache_path }}php54-php-oci8-5.4.45-12.el6.remi.x86_64.rpm"
+
+- name: update ld include path
+  copy:
+    content: '/usr/lib/oracle/12.1/client64/lib/'
+    dest: /etc/ld.so.conf.d/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.conf
+  notify:
+    - update ld config
+
+- name: check module is in ld cache
+  become: yes
+  command: ldconfig -p -N
+  register: ld_config
+  changed_when: "'libclntsh.so.12.1' not in ld_config.stdout"
+  notify:
+    - update ld config
+
+- name: copy remi module into modules directory
+  file:
+    src: "{{ php.config_root }}/usr/lib64/php/modules/{{ item }}"
+    dest: "/usr/lib64/php/modules/{{ item }}"
+    state: link
+  with_items:
+    - oci8.so
+    - pdo_oci.so
+
+- name: copy remi configs into configs directory
+  file:
+    src: "{{ php.config_root }}/etc/php.d/{{ item }}"
+    dest: "/etc/php.d/{{ item }}"
+    state: link
+  with_items:
+    - oci8.ini
+    - pdo_oci.ini
+...
