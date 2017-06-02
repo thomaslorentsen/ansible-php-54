@@ -36,7 +36,7 @@
 
 - name: copy remi module into modules directory
   file:
-    src: "{{ php.config_root }}/usr/lib64/php/modules/{{ item }}"
+    src: "/opt/remi/php54/root/usr/lib64/php/modules/{{ item }}"
     dest: "/usr/lib64/php/modules/{{ item }}"
     state: link
   with_items:
@@ -45,7 +45,7 @@
 
 - name: copy remi configs into configs directory
   file:
-    src: "{{ php.config_root }}/etc/php.d/{{ item }}"
+    src: "/opt/remi/php54/root/etc/php.d/{{ item }}"
     dest: "/etc/php.d/{{ item }}"
     state: link
   with_items:
