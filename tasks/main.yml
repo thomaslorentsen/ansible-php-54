@@ -48,5 +48,6 @@
     - "{{ cache_path }}php54-pecl-apc-3.1.13-2.ius.{{ ius_distribution }}.x86_64.rpm"
     - "{{ cache_path }}php54-pecl-memcache-3.0.8-1.ius.{{ ius_distribution }}.x86_64.rpm"
 
+- include: geoip.yml
 - include: oracle_instant_client.yml
 ...

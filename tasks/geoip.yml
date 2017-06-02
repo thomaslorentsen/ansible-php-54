@@ -1,0 +1,21 @@
+---
+- name: create geoip directory
+  file:
+    path: /usr/share/php/GeoIP
+    state: directory
+
+- name: download geoip data
+  get_url:
+    url: http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
+    dest: /usr/share/php/GeoIP/
+
+- name: Extract Archive
+  command: gzip -d /usr/share/php/GeoIP/GeoIP.dat.gz
+  args:
+    creates: /usr/share/php/GeoIP/GeoIP.dat
+
+- name: Set Permissions
+  file:
+    path: /usr/share/php/GeoIP/GeoIP.dat
+    mode: 0744
+...
